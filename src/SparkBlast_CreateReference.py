@@ -1,6 +1,6 @@
 # PySpark program to create blast reference hash on cassandra using spark
-# Usage: SparkBlast_CreateReference <Reference_Files> [Key_size=11] [ReferenceName=blast] [Method=1] [PartitionSize=0] [ContentBlockSize=1000]
-
+# Usage: SparkBlast_CreateReference <Reference_Files> [Key_size=11] [ReferenceName=blast] [Method=1] [BlockSize=128K] [ContentBlockSize=1000] [HashGroupSize=10000000] [StatisticsFileName]
+   
 
 import pyspark
 from pyspark import SparkContext
@@ -918,7 +918,7 @@ if __name__ == "__main__":
     ## SparkBlast_CreateReference <Reference_Files> [Key_size=11] [ReferenceName] [Method] 
     ## [PartitionSize] [ContentBlockSize]
     if (len(sys.argv)<2):
-        print("Error parametes. Usage: SparkBlast_CreateReference <Reference_Files> [Key_size={}] [ReferenceName] [Method={}]  [PartitionSize={}] [ContentBlockSize={}] [HashGroupsSize={}].\n".format(DKeySize, DDefaultMethod, DPartitionBlockSize, DContentBlockSize, DHashGroupsSize))
+        print("Error parametes. Usage: SparkBlast_CreateReference <Reference_Files> [Key_size={}] [ReferenceName] [Method={}]  [BlockSize={}] [ContentBlockSize={}] [HashGroupsSize={}] [StatisticsFileName].\n".format(DKeySize, DDefaultMethod, DPartitionBlockSize, DContentBlockSize, DHashGroupsSize))
         sys.exit(1)
 
     ReferenceFilename = sys.argv[1]
