@@ -30,12 +30,20 @@ Usage: SparkBlast_CreateReference <Reference_Files> [Key_size=11] [ReferenceName
 This application is lauched using the spark-submit command. It can be specific some yarn attributes to define the resources assigned to the job (number of executors, number of cores by executor and the Driver & executor memory). The program recibes the sequence fasta file (this file has to be stored in HDFS), the key size (K), the reference keyspace name in cassandra, the method used for build the inverted-index, the input file block size, the content block size, the hash group size and the output stadistics file. 
 
 ```
-spark-submit --name Hash_GRCh38F --master yarn --deploy-mode cluster --num-executors 5 --executor-cores 16  --driver-memory 8g --executor-memory 40g  --packages com.datastax.spark:spark-cassandra-connector_2.11:2.4.1 ./SparkBlast_CreateReference.py /user/nando/Datasets/References/GRCh38_latest_genomic.fna.gz 11 GRCh38F_96E1C_120000000 1 $((128*1024)) 100000  120000000 ./Results/Scalability_GRCh38F.res
+spark-submit --name Hash_GRCh38F --master yarn --deploy-mode cluster --num-executors 5 --executor-cores 16  --driver-memory 8g --executor-memory 40g  --packages com.datastax.spark:spark-cassandra-connector_2.11:2.4.1 ./SparkBlast_CreateReference.py /user/Datasets/References/GRCh38_latest_genomic.fna.gz 11 GRCh38F 1 $((128*1024)) 100000  120000000 ./Results/Scalability_GRCh38F.res
 
 ```
 
 ### Performing queries
 
+The last step is to make the query against a reference sequence stored in Cassandra. It is done using the *SparkBlast_DoQuery* pyspark application:
 
+# Usage: DoQuery [--MQuery] <Query_Files> <ReferenceName> [Key_size=11] [StadisticsFile] [NumberOfPartitions] [HashName] 
+
+This application is also lauched using the spark-submit command. It can be specific some yarn attributes to define the resources assigned to the job (number of executors, number of cores by executor and the Driver & executor memory). The program recibes the method usesd (single query or multiple query processing), the query sequence fasta file (this file has to be stored in HDFS), the content reference keyspace name in cassandra, the key size (K) which has to match the one used to create the inverted index, the output stadistics file, the number of partitions for the procesing and the interted-index keyspace name in cassandra. 
+
+```
+spark-submit --name Query_GRCH38_5E16C --master yarn --deploy-mode cluster --num-executors 5 --executor-cores 16 --driver-memory 8g --executor-memory 40g --packages com.datastax.spark:spark-cassandra-connector_2.11:2.4.1 ./SparkBlast_DoQuery.py --MQuery /Datasets/Sequences/GRCh38_1K.csv.gz grch38F 11 ./Results/Scalability_DoQuery_GRCh38F.res 160 grch38F_
+```
 
 
