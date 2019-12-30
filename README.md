@@ -12,13 +12,14 @@ Sparky-Blast requires a Spark cluster with the Cassandra database.
 
 The firs step to execute Sparky-Blaset is create the sequence content database. This is done, using the Blast_CreateReferenceContent.py python program:
 
-Usage: Blast_CreateReferenceContent <Reference_Files> [ReferenceName=ReferenceFileName] [ContentBlockSize=1000]
+  Usage: Blast_CreateReferenceContent <Reference_Files> [ReferenceName=ReferenceFileName] [ContentBlockSize=1000]
 
-'''
+It recibes 3 parameters: the fasta file with the reference sequences, the name for the Cassandra keyspace and the record block size.
+
+```
 ./Blast_CreateReferenceContent.py GRCh38_latest_genomic.fna.gz grch38F 100
-'''
+```
 
-It recibes 3 parameters: the fasta file with the reference sequences, the name for 
 
 ### Create the sequence reference Inverted-Index
 
