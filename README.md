@@ -38,7 +38,7 @@ spark-submit --name Hash_GRCh38F --master yarn --deploy-mode cluster --num-execu
 
 The last step is to make the query against a reference sequence stored in Cassandra. It is done using the *SparkBlast_DoQuery* pyspark application:
 
-# Usage: DoQuery [--MQuery] <Query_Files> <ReferenceName> [Key_size=11] [StadisticsFile] [NumberOfPartitions] [HashName] 
+Usage: DoQuery [--MQuery] <Query_Files> <ReferenceName> [Key_size=11] [StadisticsFile] [NumberOfPartitions] [HashName] 
 
 This application is also lauched using the spark-submit command. It can be specific some yarn attributes to define the resources assigned to the job (number of executors, number of cores by executor and the Driver & executor memory). The program recibes the method usesd (single query or multiple query processing), the query sequence fasta file (this file has to be stored in HDFS), the content reference keyspace name in cassandra, the key size (K) which has to match the one used to create the inverted index, the output stadistics file, the number of partitions for the procesing and the interted-index keyspace name in cassandra. 
 
