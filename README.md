@@ -43,7 +43,7 @@ Usage: DoQuery [--MQuery] <Query_Files> <ReferenceName> [Key_size=11] [Stadistic
 This application is also lauched using the spark-submit command. It can be specific some yarn attributes to define the resources assigned to the job (number of executors, number of cores by executor and the Driver & executor memory). The program recibes the method usesd (single query or multiple query processing), the query sequence fasta file (this file has to be stored in HDFS), the content reference keyspace name in cassandra, the key size (K) which has to match the one used to create the inverted index, the output stadistics file, the number of partitions for the procesing and the interted-index keyspace name in cassandra. 
 
 ```
-spark-submit --name Query_GRCH38_5E16C --master yarn --deploy-mode cluster --num-executors 5 --executor-cores 16 --driver-memory 8g --executor-memory 40g --packages com.datastax.spark:spark-cassandra-connector_2.11:2.4.1 ./SparkBlast_DoQuery.py --MQuery /Datasets/Sequences/GRCh38_1K.csv.gz grch38F 11 ./Results/Scalability_DoQuery_GRCh38F.res 160 grch38F_
+spark-submit --name Query_GRCH38_5E16C --master yarn --deploy-mode cluster --num-executors 5 --executor-cores 16 --driver-memory 8g --executor-memory 40g --packages com.datastax.spark:spark-cassandra-connector_2.11:2.4.1 ./SparkBlast_DoQuery.py --MQuery /Datasets/Sequences/GRCh38_1K.csv.gz grch38F 11 ./Results/Scalability_DoQuery_GRCh38F.res 160 grch38F
 ```
 
 
