@@ -1,0 +1,4 @@
+jklmnopqrstuvwxyz	1	17
+1234567890abcdefghijklmnopqrstuvwxyz	2	36
+90abcdfffghisajklmnopqrst	3	25
+765432109876543210987654321	4	27
